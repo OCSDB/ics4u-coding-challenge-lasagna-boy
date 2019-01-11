@@ -1,3 +1,8 @@
+// Daniel Shiffman
+// http://codingtra.in
+// http://patreon.com/codingtrain
+// Code for: https://youtu.be/hacZU523FyM
+
 function Asteroid(pos, r) {
   if (pos) {
     this.pos = pos.copy();
@@ -38,3 +43,25 @@ function Asteroid(pos, r) {
     endShape(CLOSE);
     pop();
   }
+
+  this.breakup = function() {
+    var newA = [];
+    newA[0] = new Asteroid(this.pos, this.r);
+    newA[1] = new Asteroid(this.pos, this.r);
+    return newA;
+  }
+
+  this.edges = function() {
+    if (this.pos.x > width + this.r) {
+      this.pos.x = -this.r;
+    } else if (this.pos.x < -this.r) {
+      this.pos.x = width + this.r;
+    }
+    if (this.pos.y > height + this.r) {
+      this.pos.y = -this.r;
+    } else if (this.pos.y < -this.r) {
+      this.pos.y = height + this.r;
+    }
+  }
+
+}
